@@ -14,6 +14,9 @@ public class Sucursal {
     private int id;
 
     @Column @Getter @Setter
+    private String nombre;
+
+    @Column @Getter @Setter
     private String direccion;
 
     @Getter @Setter
@@ -28,4 +31,8 @@ public class Sucursal {
     @Getter @Setter
     @OneToMany(mappedBy="sucursal")
     private List<PuntoVenta> puntosVenta;
+
+    @OneToOne(mappedBy="sucursal")
+    @Getter @Setter
+    private Deposito deposito;
 }
