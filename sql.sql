@@ -156,6 +156,35 @@ insert into marca (descripcion) values ("Levi's");
 
 select * from marca;
 
+insert into deposito (descripcion, sucursal_id) values ("Deposito Centro",1);
+insert into deposito (descripcion, sucursal_id) values ("Deposito Norte",3);
+
+select * from deposito;
+
+insert into articulo (id,descripcion,costo,margen_ganancia,marca_id,categoria_id) values (1,"Remera cuello en V", 10000, 0.7,1,2);
+insert into articulo (id,descripcion,costo,margen_ganancia,marca_id,categoria_id) values (2,"Pantalon adizero", 15000, 0.7,2,1);
+insert into articulo (id,descripcion,costo,margen_ganancia,marca_id,categoria_id) values (3,"Zapatilla Air Jordan", 30000, 0.7,2,4);
+insert into articulo (id,descripcion,costo,margen_ganancia,marca_id,categoria_id) values (4,"Remera cuello en V", 10000, 0.7,1,2);
+
+select * from articulo;
+ 
+select articulo.id, articulo.descripcion, articulo.costo, articulo.margen_ganancia, marca.descripcion as marca, categoria.descripcion as categoria
+ from articulo inner join marca on articulo.marca_id = marca.id inner join categoria on articulo.categoria_id = categoria.id;
+
+insert into stock (articulo_id, color_id, talle_id, cantidad_disponible, deposito_id) values (1,2,71,10,1);
+insert into stock (articulo_id, color_id, talle_id, cantidad_disponible, deposito_id) values (1,4,71,10,1);
+insert into stock (articulo_id, color_id, talle_id, cantidad_disponible, deposito_id) values (1,1,71,10,1);
+insert into stock (articulo_id, color_id, talle_id, cantidad_disponible, deposito_id) values (1,2,71,10,1);
+
+select a.descripcion, col.descripcion as color, t.descripcion as talle, m.descripcion as marca, cat.descripcion as categoria, s.cantidad_disponible from stock as s 
+  inner join articulo as a on s.articulo_id = a.id
+  inner join color as col on s.color_id = col.id
+  inner join talle as t on s.talle_id = t.id
+  inner join marca as m on a.marca_id = m.id
+  inner join categoria as cat on a.categoria_id = cat.id;
+
+select * from talle where descripcion = "M";
+
 
 
 
