@@ -1,15 +1,20 @@
 use latienda;
+select * from tipo_comprobante;
+insert into tipo_comprobante (descripcion) values ("A");
+insert into tipo_comprobante (descripcion) values ("B");
 
-insert into condicion_tributaria (descripcion) values ("Responsable inscripto"); /*id: 1*/
-insert into condicion_tributaria (descripcion) values ("Monotributo"); /*id: 2*/
-insert into condicion_tributaria (descripcion) values ("Exento"); /*id: 3*/
-insert into condicion_tributaria (descripcion) values ("No Responsable"); /*id: 4*/
-insert into condicion_tributaria (descripcion) values ("Consumidor Final"); /*id: 5*/
+
+insert into condicion_tributaria (descripcion,tipo_comprobante_id) values ("Responsable inscripto",1); /*id: 11*/
+insert into condicion_tributaria (descripcion,tipo_comprobante_id) values ("Monotributo",1); /*id: 12*/
+insert into condicion_tributaria (descripcion,tipo_comprobante_id) values ("Exento",2); /*id: 13*/
+insert into condicion_tributaria (descripcion,tipo_comprobante_id) values ("No Responsable",2); /*id: 14*/
+insert into condicion_tributaria (descripcion,tipo_comprobante_id) values ("Consumidor Final",2); /*id: 15*/
 
 select * from condicion_tributaria;
 
 /*CUIT: 2 dígitos aleatorios, 8 dígitos que corresponden al número de sociedad asignado, 1 digito verificador*/
 insert into tienda (cuit, descripcion, condiciontributaria_id) values (21246876548, "tienda de ropa multimarca",1); /*cuit: 21246876548*/
+update tienda set condiciontributaria_id = 11 where cuit = 21246876548;
 select * from tienda;
 
 insert into sucursal (tienda_cuit, direccion) values (21246876548, "Los alamos 731 - Tucuman"); /*id: 1 - Centro*/
@@ -176,6 +181,8 @@ insert into stock (articulo_id, color_id, talle_id, cantidad_disponible, deposit
 insert into stock (articulo_id, color_id, talle_id, cantidad_disponible, deposito_id) values (1,1,71,10,1);
 insert into stock (articulo_id, color_id, talle_id, cantidad_disponible, deposito_id) values (1,2,71,10,1);
 
+select * from stock;
+
 select a.descripcion, col.descripcion as color, t.descripcion as talle, m.descripcion as marca, cat.descripcion as categoria, s.cantidad_disponible from stock as s 
   inner join articulo as a on s.articulo_id = a.id
   inner join color as col on s.color_id = col.id
@@ -184,6 +191,10 @@ select a.descripcion, col.descripcion as color, t.descripcion as talle, m.descri
   inner join categoria as cat on a.categoria_id = cat.id;
 
 select * from talle where descripcion = "M";
+
+insert into linea_venta (cantidad_requerida, stock_id) values (4,1);
+select * from linea_venta;
+delete from linea_venta where id > 2;
 
 
 

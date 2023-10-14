@@ -22,13 +22,16 @@ public class Articulo {
 
     @ManyToOne
     @JoinColumn(name="categoria_id", nullable=false)
+    @Getter @Setter
     private Categoria categoria;
 
     @ManyToOne
     @JoinColumn(name = "marca_id", nullable = false)
+    @Getter @Setter
     private Marca marca;
 
     @OneToMany(mappedBy = "articulo")
+    @Getter @Setter
     private List<Stock> stocks;
     public double getNetoGravado(){
         return costo + costo * margenGanancia;

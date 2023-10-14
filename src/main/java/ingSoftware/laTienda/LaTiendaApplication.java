@@ -13,6 +13,8 @@ public class LaTiendaApplication {
 		System.out.println("Neto gravado: " + a1.getNetoGravado());
 		System.out.println("IVA: " + a1.getIva());
 		System.out.println("Precio venta: " + a1.getPrecioVenta());*/
+
+
 	}
 
 }
